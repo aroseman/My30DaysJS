@@ -79,6 +79,8 @@
 
     }
     function setDate(){
+
+
         const now = new Date();
 
         const seconds = now.getSeconds();
@@ -96,6 +98,7 @@
             secondHand.style.transition = `none`;
             minuteHand.style.transition = `none`;
             hourHand.style.transition = `none`;
+
         }
         else {
             // Add transition back.
@@ -107,6 +110,7 @@
 
             hourHand.style.transition = `all 0.05s`;
             hourHand.style.transitionTimingFunction = `cubic-bezier(.63,2.95,.58,1)`;
+
         }
 
         secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
