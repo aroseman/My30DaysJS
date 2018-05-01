@@ -47,6 +47,20 @@
     </div>
   </div>
 
+  <div class="recorder">
+    <div class ="button">
+      <img src="images/play-button.svg" style="height: 100%; width: auto;" class="play-button">
+    </div>
+      <div class ="button">
+          <img src="images/record.svg" style="height: 100%; width: auto;" class="record-button">
+      </div>
+
+  </div>
+
+  <div class="footer">
+    <div>Icons made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+  </div>
+
   <audio data-key="65" src="sounds/clap.wav"></audio> <!-- Data attribute allow you create custom html attributes -->
   <audio data-key="83" src="sounds/hihat.wav"></audio>
   <audio data-key="68" src="sounds/kick.wav"></audio>
@@ -60,7 +74,10 @@
 <script>
 
   const keys = document.querySelectorAll('.key');
+  const play = document.querySelector('.play-button');
+  play.addEventListener("click", playRecording);
   keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
   function playSound (e){
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); // freaking useful.!!!!
     const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
@@ -72,6 +89,9 @@
   function removeTransition(e){
     if(e.propertyName !== 'transform') return; // skip it if it isn't transform.
     this.classList.remove('playing'); // This refers to the key that was pressed.
+  }
+  function playRecording(){
+      console.log("Hit Play");
   }
   window.addEventListener('keydown', playSound);
 

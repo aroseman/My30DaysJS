@@ -48,3 +48,18 @@ kbd {
   letter-spacing: .1rem;
   color: #ffc600;
 }
+
+.button{
+    display:inline-block;
+    float: left;
+  height: 100px;
+  width: 100px;
+}
+
+.recorder{
+  top: 600px;
+  left: 400px;
+  position: absolute;
+    height: 100px;
+    width: 100px;
+}
