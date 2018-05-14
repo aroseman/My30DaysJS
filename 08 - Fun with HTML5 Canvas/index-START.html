@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+</head>
+<body>
+<canvas id="draw" width="800" height="800"></canvas>
+<script>
+  const canvas = document.querySelector('#draw');
+  const ctx = canvas.getContext('2d'); // The context is what we actually draw on.
+
+
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  ctx.strokeStyle = '#BADA55';
+  ctx.lineJoin = 'round'; // where a line meets another line it should be rounded.
+  ctx.lineCap = 'round'; // where a line ends it should be rounded.
+  ctx.lineWidth = 0;
+
+  let isDrawing = false;
+  let lastX = 0;
+  let lastY = 0;
+  let hue = 0;
+  let lineWidth = 0;
+  function draw(e){
+      if(!isDrawing) return; // stop the function from drawing.
+
+      ctx.strokeStyle = `hsl(${hue}, 100%, 50%`;
+      ctx.lineWidth = lineWidth;
+      ctx.beginPath();
+      // start from
+      ctx.moveTo(lastX, lastY);
+      // go to
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke(); // renders the line.
+      lastX = e.offsetX;
+      lastY = e.offsetY;
+      hue++;
+      lineWidth++;
+  }
+
+  canvas.addEventListener('mousemove', draw);
+
+  // Manage drawing flag.
+  canvas.addEventListener('mousedown', (e) => {
+      isDrawing = true;
+      lineWidth = 0;
+      [lastX, lastY] = [e.offsetX, e.offsetY] // es6 way to update multiple variables in a single line.
+
+  });
+  canvas.addEventListener('mouseup', () => {
+      isDrawing = false;
+      lineWidth = 0;
+  });
+  canvas.addEventListener('mouseout', () => isDrawing = false);
+
+</script>
+
+<style>
+  html, body {
+    margin:0;
+  }
+</style>
+
+</body>
+</html>
